@@ -1,28 +1,38 @@
 .underline-hover {
     position: relative;
     display: inline-block;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
+    color: #fff; /* Initial text color */
+    font-size: 16px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em; /* Increased spacing */
     cursor: pointer;
-  }
+    padding-bottom: 5px; /* Space for the bottom border */
+    transition: color 0.3s ease-in-out;
+}
 
-  .underline-hover::before {
+/* The element that creates the neon glow line */
+.underline-hover::before {
     content: "";
     position: absolute;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: all 0.5s ease-in-out;
-  }
-
-  .underline-hover::before {
+    width: 100%; /* Line is always present */
+    height: 1px;
+    background-color: #00fff2; /* Neon Cyan color */
     left: 0;
     bottom: 0;
-  }
+    opacity: 0.3; /* Subtle base line */
+    transition: all 0.5s ease-in-out;
+}
 
-  .underline-hover:hover::before {
-    width: 100%;
-  }
+/* On hover, increase the text brightness and make the line glow and become solid */
+.underline-hover:hover {
+    color: #00fff2; /* Change text color to neon */
+    text-shadow: 0 0 5px #00fff2, 0 0 10px #00fff2; /* Add text glow */
+}
+
+.underline-hover:hover::before {
+    height: 3px; /* Thicker line */
+    opacity: 1; /* Fully visible */
+    box-shadow: 0 0 10px #00fff2, 0 0 20px #00fff2; /* Add strong line glow */
+    transform: scaleX(1.1); /* Slightly expand the line for a dynamic look */
+}

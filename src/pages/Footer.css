@@ -1,47 +1,127 @@
-.underline-hover1 {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-  }
+/* 1. UNIQUE HEADER DESIGN */
 
-  .underline-hover1::before {
+.text-fill-underline {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.text-fill-underline::before,
+.text-fill-underline::after {
     content: "";
     position: absolute;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: all 0.5s ease-in-out;
-  }
-
-  .underline-hover1::before {
-    left: 0;
+    height: 4px;
+    background-color: #ff4081; /* Primary Accent Magenta */
     bottom: 0;
-  }
+    transition: width 0.4s ease-in-out, background-color 0.4s;
+}
 
-  .underline-hover1:hover::before {
-    width: 100%;
-  }
+.text-fill-underline::before {
+    left: 0;
+    width: 40%;
+}
 
-.underline-hover2 {
+.text-fill-underline::after {
+    right: 0;
+    width: 40%;
+    background-color: #30e8ff; /* Secondary Accent Cyan */
+}
+
+.text-fill-underline:hover::before {
+    width: 50%;
+    background-color: #9452b4; /* Purple blend */
+}
+
+.text-fill-underline:hover::after {
+    width: 50%;
+    background-color: #9452b4; /* Purple blend */
+}
+
+/* Small version for the footer copyright text */
+.text-fill-underline-small {
     position: relative;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-  }
+    padding-bottom: 3px;
+    transition: color 0.3s;
+}
 
-  .underline-hover2::before {
+.text-fill-underline-small::before {
     content: "";
     position: absolute;
-    width: 0;
     height: 1px;
-    background-color: rgb(130, 128, 128);
-    transition: all 0.5s ease-in-out;
-  }
-
-  .underline-hover2::before {
-    left: 0;
+    width: 0;
+    background-color: white;
     bottom: 0;
-  }
+    left: 0;
+    transition: width 0.3s;
+}
 
-  .underline-hover2:hover::before {
+.text-fill-underline-small:hover {
+    color: #ff9966; /* Orange hover */
+}
+
+.text-fill-underline-small:hover::before {
     width: 100%;
-  }
+    background-color: #ff9966;
+}
+
+/* 2. UNIQUE LINK DESIGN: SKEWED FILL */
+
+.link-skew-fill {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #3d2250; /* Subtle border for dark background */
+    transition: color 0.3s ease;
+}
+
+.link-skew-fill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly brighter background on fill */
+    transform: translateX(-100%) skewX(-30deg);
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 0;
+}
+
+.contact-text {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+
+.link-skew-fill:hover {
+    color: white;
+    border-color: white;
+}
+
+.link-skew-fill:hover::before {
+    transform: translateX(0) skewX(-30deg);
+}
+
+.link-skew-fill:hover .contact-text {
+    transform: translateX(10px);
+}
+
+
+
+
+
+.footer-neon-bg {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(
+        135deg,
+        #00141f 0%,
+        #002b36 20%,
+        #26003d 55%,
+        #400061 100%
+    );
+    box-shadow:
+        0 -15px 40px rgba(0, 255, 255, 0.4) inset,
+        0 10px 40px rgba(255, 0, 200, 0.25) inset;
+    background-blend-mode: screen;
+    backdrop-filter: blur(6px);
+}

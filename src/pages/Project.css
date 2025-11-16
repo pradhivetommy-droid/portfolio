@@ -1,38 +1,77 @@
-.tracking-in-contract-bck-top {
-	-webkit-animation: tracking-in-contract-bck-top 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-	        animation: tracking-in-contract-bck-top 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+/* =============== CLEAN, FAST, NEON CYAN EFFECT =============== */
+
+/* Default row style */
+.repo-item {
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid transparent;
+  backdrop-filter: blur(6px);
+  transition: all 0.28s ease-in-out;
+  padding: 10px 14px;
 }
 
- @-webkit-keyframes tracking-in-contract-bck-top {
-    0% {
-      letter-spacing: 1em;
-      -webkit-transform: translateZ(400px) translateY(-300px);
-              transform: translateZ(400px) translateY(-300px);
-      opacity: 0;
-    }
-    40% {
-      opacity: 0.6;
-    }
-    100% {
-      -webkit-transform: translateZ(0) translateY(0);
-              transform: translateZ(0) translateY(0);
-      opacity: 1;
-    }
-  }
-  @keyframes tracking-in-contract-bck-top {
-    0% {
-      letter-spacing: 1em;
-      -webkit-transform: translateZ(400px) translateY(-300px);
-              transform: translateZ(400px) translateY(-300px);
-      opacity: 0;
-    }
-    40% {
-      opacity: 0.6;
-    }
-    100% {
-      -webkit-transform: translateZ(0) translateY(0);
-              transform: translateZ(0) translateY(0);
-      opacity: 1;
-    }
-  }
-  
+/* On hover: full neon cyan glow */
+.repo-item:hover {
+  border-color: #00eaff;
+  box-shadow: 0 0 15px #00eaff70;
+  background: rgba(0, 255, 255, 0.04);
+  transform: translateY(-3px);
+}
+
+/* Repository text (left side) */
+.repo-label {
+  position: relative;
+  font-weight: 700;
+  color: #000;
+  transition: 0.25s ease-in-out;
+}
+
+/* Neon underline like navbar */
+.repo-label::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  border-radius: 6px;
+  background: #00eaff;
+  box-shadow: 0 0 10px #00eaff;
+  transition: width 0.25s ease-in-out;
+}
+
+/* Hover effect triggers the neon underline */
+.repo-item:hover .repo-label {
+  color: #00eaff;
+}
+.repo-item:hover .repo-label::after {
+  width: 100%;
+}
+
+/* Status text (middle) */
+.repo-status {
+  font-weight: bold;
+  color: #000;
+  transition: 0.25s ease-in-out;
+}
+
+/* Project text (small gray text) */
+.repo-project {
+  opacity: 0.5;
+  font-size: 14px;
+  color: #000;
+  transition: 0.25s;
+}
+
+/* Neon arrow transition */
+.arrow-glow {
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #b2b2b2;
+}
+
+/* Hover → neon cyan arrow */
+.repo-item:hover .arrow-glow {
+  transform: rotate(90deg);
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff;
+}

@@ -1,135 +1,95 @@
 import React, { useEffect, useRef, useState } from "react";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import "./Project.css";
-import BallGame from ".././assets/BallGame.png";
-import Invoice from ".././assets/InvoiceApp.png";
-import NavBar from ".././assets/NavBar.png";
-import Portfolio from ".././assets/Portfolio.png";
-import Wedding from ".././assets/Wedding.png";
 
-export default function Project() {
+export default function LearningJourney() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
-  const projectRef = useRef(null);
+  const journeyRef = useRef(null);
 
   const data = [
-    {
-      label: "Former Portfolio",
-      imageURL: Portfolio,
-      url: "https://pradhive.netlify.app/",
-    },
-    {
-      label: "NavBar App",
-      imageURL: NavBar,
-      url: "https://navbar-pradhive.netlify.app/",
-    },
-    {
-      label: "Wedding App",
-      imageURL: Wedding,
-      url: "https://pradhive1.netlify.app/",
-    },
-    {
-      label: "Ball Game",
-      imageURL: BallGame,
-      url: "https://pradhive.github.io/Ball-Game/",
-    },
-    {
-      label: "Invoice App",
-      imageURL: Invoice,
-      url: "https://ashokmess.netlify.app/",
-    },
+    { label: "Dribble", status: "UI Design / HTML", project: "Web Layout Cloning", url: "https://github.com/pradhivetommy-droid/Dribble" },
+    { label: "Figma", status: "UI/UX Mockup", project: "Figma App Clone", url: "https://github.com/pradhivetommy-droid/Figma" },
+    { label: "igallery", status: "Python / Web", project: "Image Gallery Application", url: "https://github.com/pradhivetommy-droid/igallery" },
+    { label: "restweb", status: "HTML/Web Basics", project: "Simple Restaurant Page", url: "https://github.com/pradhivetommy-droid/restweb" },
+    { label: "MathServer", status: "Python / Server Logic", project: "Server-Side Computations", url: "https://github.com/pradhivetommy-droid/MathServer" },
   ];
-  const handleProjectClick = (url) => {
-    window.open(url, "_blank");
-  };
 
-  const handleIntersection = (entries) => {
-    const entry = entries[0];
-    if (entry.isIntersecting) {
-      setIsVisible(true);
-    }
-  };
+  const handleLinkClick = (url) => window.open(url, "_blank");
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.35,
-    });
-
-    if (projectRef.current) {
-      observer.observe(projectRef.current);
-    }
-
-    return () => {
-      if (projectRef.current) {
-        observer.unobserve(projectRef.current);
-      }
-    };
+    const obs = new IntersectionObserver(
+      (entries) => entries[0].isIntersecting && setIsVisible(true),
+      { threshold: 0.3 }
+    );
+    if (journeyRef.current) obs.observe(journeyRef.current);
+    return () => journeyRef.current && obs.unobserve(journeyRef.current);
   }, []);
 
   return (
-    <section id="project" className="p-4 md:mb-[300px]" ref={projectRef}>
-      <div
-        className={`text-[40px] md:text-[80px] p-4 font-semibold ${
-          isVisible ? "tracking-in-contract-bck-top" : ""
-        } `}
-      >
-        Projects
+   <section id="journey" className="pt-0 pb-4 md:mb-[80px]" ref={journeyRef}>
+
+
+      
+      {/* Title */}
+     <div className="text-[40px] md:text-[80px] pt-0 pb-2 font-semibold text-black">
+
+
+        My Repositories
       </div>
-      <div
-        className={`text-end p-4 text-gray-600  ${
-          isVisible ? "animate__animated  animate__slideInDown " : ""
-        }`}
-      >
-        Here are some of my work @copyright2024
+
+      {/* Subtitle */}
+      <div className="text-end text-gray-400 p-4">
+        A snapshot of my recent GitHub projects (Click to View)
       </div>
-      {data?.map((o, index) => (
+
+      {/* List */}
+      {data.map((o, index) => (
         <div
-          className="grid md:grid-cols-3 cursor-pointer"
           key={index}
+          onClick={() => handleLinkClick(o.url)}
           onMouseEnter={() => setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(null)}
-          onClick={() => handleProjectClick(o.url)}
         >
-          <div className="hidden md:block">
-            {hoveredIndex === index && (
-              <img
-                src={o?.imageURL || ""}
-                className="h-[30vh] rounded-lg  absolute animate__animated animate__fadeInUp "
-                alt=""
-              />
-            )}
-          </div>
-          <div className="col-span-2 md:pr-10">
-            <div
-              className={`grid grid-cols-5 border-y-2 items-center text-gray-400 h-28`}
-            >
+          <div className="md:pr-10 my-4">
+            <div className="repo-item grid grid-cols-10 p-5 items-center">
+              
+              {/* Repo Name */}
               <div
-                className={`col-span-3 text-lg md:text-3xl ${
-                  hoveredIndex === index ? "translate-x-10" : ""
-                } duration-500`}
+                className={`col-span-3 text-2xl repo-label ${
+                  hoveredIndex === index ? "translate-x-2" : ""
+                } transition-all`}
               >
-                {o?.label}
+                {o.label}
               </div>
-              <div className="col-span-2 flex justify-between ">
+
+              {/* Status + Project + Arrow */}
+              <div className="col-span-7 flex justify-between items-center">
+
                 <div
-                  className={`${
-                    hoveredIndex === index ? "translate-x-10" : ""
-                  } duration-500`}
+                  className={`flex gap-4 ${
+                    hoveredIndex === index ? "translate-x-2" : ""
+                  } transition-all`}
                 >
-                  Web Design
+                  <span className="repo-status">{o.status}</span>
+                  <span className="repo-project">({o.project})</span>
                 </div>
+
+                {/* Arrow */}
                 <div
-                  className={`${
-                    hoveredIndex === index ? "" : "-rotate-45"
-                  } duration-500`}
+                  className={`arrow-glow ${
+                    hoveredIndex === index ? "rotate-90" : "-rotate-45"
+                  }`}
                 >
-                  <ArrowDownwardIcon />
+                  <ArrowDownwardIcon fontSize="large" />
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       ))}
+
     </section>
   );
 }

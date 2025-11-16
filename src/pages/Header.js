@@ -17,13 +17,18 @@ export default function Header() {
   ];
 
   return (
-    <div className="bg-black border-b w-full h-[10vh] p-4 flex justify-between items-center fixed top-0 !z-40">
+   <div className="bg-gradient-to-r from-[#001219] via-[#001f2e] to-[#001219] shadow-[0_0_20px_#00fff2] border-b border-cyan-500/30 w-full h-[10vh] p-4 flex justify-between items-center fixed top-0 !z-40">
+
+
+
+
+
       <div className="flex">
         <div
           className="text-white text-[30px] pl-4 tracking-widest font-bold italic cursor-pointer"
           onClick={scrollToTop}
         >
-          PU
+          Ragul
         </div>
         <span className="p-1 mt-2 ml-1 h-fit bg-white rounded-full"></span>
       </div>

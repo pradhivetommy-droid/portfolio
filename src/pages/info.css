@@ -1,8 +1,40 @@
-.hero {
-  width: min(75%, 1440px);
+.info-hero {
+  width: 100%;
+  min-height: 100vh;  /* ALWAYS full height */
+  height: auto;       /* Expand if content grows */
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 80px;
+  overflow: hidden;
 
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
 
-  & .anim {
-    line-height: 1.5;
-  }
+/* Overlay */
+.info-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);  /* lower opacity */
+  z-index: 1;
+}
+
+/* Content */
+.info-content {
+  z-index: 2;
+  max-width: 65%;
+}
+
+/* Large text */
+.info-title {
+  font-size: 110px;
+  font-weight: 900;
+}
+
+.info-description {
+  color: #ddd;
+  font-size: 42px;
+  opacity: 0.5;
 }
