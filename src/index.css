@@ -1,16 +1,106 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #e7e7e7;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html,
+body,
+#root {
+  background: #0c0c0c;
+  font-family: 'Kanit', sans-serif;
 }
 
-*::-webkit-scrollbar {
-  display: none;
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-marquee {
+  display: flex;
+  gap: 4rem;
+  animation: hero-marquee 24s linear infinite;
+  will-change: transform;
+}
+
+.hero-marquee span {
+  flex: 0 0 auto;
+}
+
+.skill-card {
+  height: 220px;
+  perspective: 1000px;
+}
+
+.skill-card-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.skill-card:hover .skill-card-inner,
+.skill-card:focus-within .skill-card-inner {
+  transform: rotateY(180deg);
+}
+
+.skill-card-front,
+.skill-card-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.skill-card-front {
+  border: 1px solid rgba(12, 12, 12, 0.12);
+  background: linear-gradient(145deg, #f8fbff, #d7e2ea);
+  box-shadow: 0 18px 40px rgba(12, 12, 12, 0.12);
+}
+
+.skill-card-back {
+  flex-direction: column;
+  border: 1px solid rgba(0, 234, 255, 0.45);
+  background: #0c0c0c;
+  color: #d7e2ea;
+  transform: rotateY(180deg);
+  box-shadow: 0 18px 45px rgba(0, 234, 255, 0.2);
+}
+
+.footer-neon-bg {
+  background:
+    linear-gradient(135deg, #00141f 0%, #002b36 28%, #26003d 66%, #400061 100%);
+  box-shadow:
+    0 -15px 40px rgba(0, 255, 255, 0.32) inset,
+    0 10px 40px rgba(255, 0, 200, 0.18) inset;
+}
+
+@keyframes hero-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .skill-card {
+    height: 180px;
+  }
 }
